@@ -1,4 +1,4 @@
-package main
+package requests
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,12 +6,11 @@ import (
 	"github.com/waxxed/api"
 )
 
-const PORT string = ":3001"
-
-func main() {
+func Home(c *gin.Context) {
 	err := godotenv.Load(".env")
-	internal.Check(err)
+	api.Check(err)
 
-	r := gin.Default()
-	r.GET("/", index.Home)
+	c.JSON(200, gin.H{
+		"message": "Hello World!",
+	})
 }
